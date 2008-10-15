@@ -1,5 +1,6 @@
 <?php
 
+// Form Constants
 define("INPUT_TEXT", "text");
 define("INPUT_PASSWORD", "password");
 define("TEXTAREA", "textarea");
