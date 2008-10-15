@@ -41,8 +41,7 @@ function form_submit($name, $align = "left") {
 
 
 function input_checkbox_tag( $label, $name, $checked = false ) {
-	$checked_str = "";
-	if ( $checked ) $checked_str = " checked=\"checked\"";
+	( $checked ) ? $checked_str = " checked=\"checked\"" : $checked_str = "";
 	return "<input type=\"checkbox\"{$checked_str} id=\"{$name}\" name=\"{$name}\" /><label for=\"{$name}\">{$label}</label>";
 }
 
@@ -69,9 +68,7 @@ function textarea_tag($name, $cols = 50, $rows = 10) {
 }
 
 function option_tag( $id, $name, $selected = "" ) {
-	if ( $selected != "" && $id == $selected ) $selected = " selected=\"selected\"";
-	else $selected = "";
-	
+	( $selected != "" && $id == $selected ) $selected = " selected=\"selected\"" : $selected = "";	
 	return "\t<option value=\"{$id}\"{$selected}>{$name}</option>\n";
 }
 
