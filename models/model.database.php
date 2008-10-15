@@ -4,6 +4,7 @@ $connect = mysql_connect( $mysql["host"], $mysql["user"], $mysql["password"] ) o
 mysql_select_db( $mysql["database"] ) or die( mysql_error() );
 
 
+// Idea based on Drupal's way of doing database business
 function db_query( $query ) {
 	global $connect, $queries;
 	
@@ -34,13 +35,13 @@ function _db_query_callback( $match, $init = FALSE ) {
 	
 	switch ( $match[1] ) {
 		case '%d':
-			return (int) array_shift( $arguments );
+			return (int) mysql_real_escape_string( array_shift( $arguments ) );
 		case '%s':
-			return array_shift( $arguments ); // escape strings here later on
+			return mysql_real_escape_string( array_shift( $arguments ) ); // escape strings here later on
 		case '%%':
 			return '%';
 		case '%f':
-			return (float) array_shift( $arguments );
+			return (float) mysql_real_escape_string( array_shift( $arguments ) );
 	}
 }
 
