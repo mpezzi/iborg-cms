@@ -52,4 +52,12 @@ $mysql["users"] 			= "users";
 $mysql["results"]	 		= "results";
 $mysql["colours"] 			= "colours";
 
+
+
+// Pagination Settings
+$paginate = array();
+
+$paginate['enabled'] = false; // Pagination is off by default, you can turn it on when needed by using paginate() in your view;
+$paginate['default per_page'] = 20;
+
 ?>
