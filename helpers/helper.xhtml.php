@@ -52,8 +52,10 @@ function pagination() {
 			$pages[] = a_tag($page['url']."&page=". ($paginate['page'] - 1) ."&per_page=".$paginate['per_page'], "&laquo; Prev");
 		}
 		
-		for ($i=1;$i<=$num_pages;$i++) {
-			$pages[] = a_tag($page['url'] . "&page=" . $i . "&per_page=" . $paginate['per_page'], $i);
+		if ( $num_pages > 1 ) {
+			for ($i=1;$i<=$num_pages;$i++) {
+				$pages[] = a_tag($page['url'] . "&page=" . $i . "&per_page=" . $paginate['per_page'], $i);
+			}
 		}
 		
 		if ( $paginate['page'] != $num_pages ) {
@@ -64,8 +66,8 @@ function pagination() {
 		echo ul_tag($pages);
 		echo "</div>\n";
 		
-		echo "Pages: " . floor( $paginate['total'] / $paginate['per_page'] ) . "<br />\n";
-		echo "Total: " . $paginate['total'];
+		//echo "Pages: " . floor( $paginate['total'] / $paginate['per_page'] ) . "<br />\n";
+		//echo "Total: " . $paginate['total'];
 	}
 	
 	return ob_get_clean();
