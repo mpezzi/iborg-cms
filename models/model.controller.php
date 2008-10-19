@@ -142,12 +142,15 @@ function redirect($url = "") {
 	header("Location: " . $config["url"] . $url);
 }
 
-// Paginates records
-function paginate($sql, $per_page, $page) {
-	$limit = " LIMIT {$page}, {$per_page}";
-	$sql .= $limit;
-	$result = db_query($sql);
-	return mysql_fetch_row($result);
+function paginate($page_num = "", $per_page = "") {
+	global $paginate;
+	
+	$default_page_num = ( $page_num == "" ) ? 1 : $page_num;
+	$default_per_page = ( $per_page == "" ) ? $paginate['default per_page'] : $per_page;
+	
+	$paginate['enabled'] = true;
+	$paginate['per_page'] = ( isset($_GET['per_page']) && is_numeric($_GET['per_page']) ) ? $_GET['per_page'] : $default_per_page;
+	$paginate['page'] = ( isset($_GET['page']) && is_numeric($_GET['page']) ) ? $_GET['page'] : $default_page_num;
 }
 
 ?>
